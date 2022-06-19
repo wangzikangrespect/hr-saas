@@ -14,6 +14,7 @@ import router from './router'
 
 import '@/icons' // icon
 import '@/permission' // permission control
+import '@/styles/common.scss' // 引入scss全局样式
 
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
