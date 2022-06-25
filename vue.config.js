@@ -36,7 +36,15 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    proxy: { // 代理配置
+      '/api': { // 请求中带有/api字符时触发代理机制
+        target: 'http://ihrm.itheima.net', // 代理的目标地址实际表达为http://ihrm.itheima.net/api
+        changeOrigin: true // 表示允许跨域
+        // pathRewrite:{  // 路径重写
+        // '^/api':''   //这就是表示将http://ihrm.itheima.net/api改变成http://ihrm.itheima.net/
+        //
+      }
+    }
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
@@ -87,7 +95,7 @@ module.exports = {
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
             .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
+              // `runtime` must same as runtimeChunk name. default is `runtime`
               inline: /runtime\..*\.js$/
             }])
             .end()

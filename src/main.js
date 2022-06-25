@@ -11,10 +11,15 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
+// 使用 import * as directives 的方式引入directives文件中的自定义函数
+import * as directives from '@/directives'
+// 通过遍历的方式将directives对象中的方法解放出来
+Object.keys(directives).forEach((key) => {
+  Vue.directive(key, directives[key])
+})
 
 import '@/icons' // icon
 import '@/permission' // permission control
-import '@/styles/common.scss' // 引入scss全局样式
 
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
